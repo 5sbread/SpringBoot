@@ -10,12 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.iu.home.util.Pager;
 
 @Controller
+@RequestMapping("/qna/*")
 public class QnaController {
 	
 	@Autowired
 	private QnaService qnaService;
 	
-	@GetMapping("/qna/list")
+	@GetMapping(value = "list")
 	public ModelAndView getList (Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<QnaVO> ar = qnaService.getList(pager);

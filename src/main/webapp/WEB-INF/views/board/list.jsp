@@ -25,10 +25,7 @@
 				<c:forEach items="${list}" var="qna">
 					<tr>
 						<td>${qna.num}</td>
-						<td><%-- 
-							<c:catch>
-								<c:forEach begin="1" end="${qna.depth}">&ensp</c:forEach>
-							</c:catch> --%>
+						<td>
 							<a href="#">${qna.title}</a>
 						</td>
 						<td>${qna.writer}</td>
@@ -38,6 +35,26 @@
 			</tbody>			
 		</table>
 	</div>
+	
+	<div class="mb-3">
+		<a href="./add" class="btn btn-primary">글쓰기</a>
+	</div>
+	
+	<nav aria-label="Page navigation example">
+		<ul class="pagination">
+			<c:if test="${pager.pre}">
+				<li class="page-item">
+					<a class="page-link" href="./list?page=${pager.startNum-1}" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+	 		</c:if>
+		
+			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+				<li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
+			</c:forEach>
+		</ul>
+	</nav>
 
 
 </body>
