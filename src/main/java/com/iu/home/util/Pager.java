@@ -93,6 +93,5 @@ public class Pager {
 			this.page=1L;
 		}
 		return page;
-		
 	}
 }
