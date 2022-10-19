@@ -44,7 +44,7 @@ public class HomeController {
 					//{}안에 ar | size 넣기
 		log.info("List : {} | size {}", ar, ar.size());
 		
-		return "/index";
+		return "index";
 	}
 
 //-------------------------------------------	
