@@ -7,15 +7,15 @@
 <mapper namespace="com.iu.home.board.qna.QnaMapper">
 	<!-- id명은 method명과 동일하게 -->
 	<select id="getList" resultType="com.iu.home.board.qna.QnaVO">
-		SELECT * FROM QNA ORDER BY NUM DESC
+		SELECT * FROM QNA q WHERE NUM BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	
 	<insert id="setAdd" parameterType="QnaVO">
-		INSERT INTO QNA (NUM, WRITER, TITLE)
-		VALUES (0, #{writer} , #{title})
+		INSERT INTO QNA (NUM, WRITER, TITLE, CONTENTS, REGDATE)
+		VALUES (0, #{writer} , #{title}, #{contents}, now())
 	</insert>
 	
 	<select id="getCount" resultType="Long" parameterType="Pager">
-		SELECT COUNT(num) FROM QNA
+		SELECT COUNT(NUM) FROM QNA
 	</select>
 </mapper>    
