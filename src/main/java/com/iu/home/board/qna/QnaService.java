@@ -1,6 +1,9 @@
 package com.iu.home.board.qna;
 
+import java.io.File;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +20,7 @@ public class QnaService {
 	@Autowired
 	private QnaMapper qnaMapper;
 	
+	
 	public List<QnaVO> getList(Pager pager) throws Exception{
 		Long totalCount = qnaMapper.getCount(pager);
 		pager.getNum(totalCount);
@@ -25,7 +29,16 @@ public class QnaService {
 		return qnaMapper.getList(pager);
 	}
 
-	public int setAdd(QnaVO qnaVO) throws Exception {
+	public int setAdd(QnaVO qnaVO, HttpSession session) throws Exception {
+		
+		String realpath = session.getServletContext().getRealPath("/static/upload/qna");
+		log.info("RealPath : {} "+realpath);
+		File file = new File(realpath);
+		
+		if (! file.exists()) {
+			boolean check = file.mkdirs();
+			log.info("Check + {}", check);
+		}
 		
 		for (MultipartFile f : qnaVO.getFiles()) {
 			if(!f.isEmpty()) {

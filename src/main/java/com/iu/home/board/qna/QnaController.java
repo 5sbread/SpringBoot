@@ -50,11 +50,11 @@ public class QnaController {
 	
 	//글쓰기
 	@PostMapping("write")
-	public String setAdd (QnaVO qnaVO, MultipartFile [] files, RedirectAttributes redirectAttributes) throws Exception {
-		int result = qnaService.setAdd(qnaVO);
+	public String setAdd (QnaVO qnaVO, RedirectAttributes redirectAttributes, HttpSession session) throws Exception {
+		int result = qnaService.setAdd(qnaVO, session);
 		
 		redirectAttributes.addAttribute("result", result);
-		return "redirect:./list";
+		return ""; //"redirect:./list";
 		//log.info("Result : "+result);
 	}
 	
